@@ -13,7 +13,9 @@ export async function addSymbol (req: Request, res: Response, next: NextFunction
             ...req.body,
             userId: 1
         }
-        const newUserSymbol = await userSymbolModel.add(req.body as DTO)
+        const newUserSymbol = await userSymbolModel.add(inputUserSymbol)
+        console.log(`new user-symbol added with id ${newUserSymbol.id}`)
+        res.redirect('/users/dashboard')
     } catch (err) {
         next(err);
     }

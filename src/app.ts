@@ -7,6 +7,7 @@ const server = express();
 server.set('views', path.resolve(__dirname, 'views'));
 server.set('view engine', 'ejs');
 
+server.use(express.urlencoded())
 server.use('/users', usersRouter);
 
 const port = config.get<number>('app.port');
