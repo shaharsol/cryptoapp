@@ -5,6 +5,8 @@ import config from 'config';
 import errorHandler from './middlewares/error/error-handler';
 
 const server = express();
+
+// views setup
 server.set('views', path.resolve(__dirname, 'views'));
 server.set('view engine', 'ejs');
 
