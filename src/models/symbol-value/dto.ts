@@ -2,7 +2,7 @@ import { ObjectId } from "mongoose";
 
 export interface DTO {
     id?: ObjectId
-    symbol: String;
-    value: Number;
+    symbol: string;
+    value: number;
     when: Date;
 }

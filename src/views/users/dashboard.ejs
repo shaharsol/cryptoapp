@@ -22,10 +22,10 @@
             </tr>
         </thead>
         <tbody>
-            <% userSymbols.forEach(userSymbol => { %>
+            <% symbolValues.forEach(userSymbol => { %>
                 <tr>
                     <td><%= userSymbol.symbol %></td>
-                    <td></td>
+                    <td><%= userSymbol.value %></td>
                 </tr>
             <% }) %>
         </tbody>
