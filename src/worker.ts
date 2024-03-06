@@ -50,9 +50,9 @@ async function work() {
 }
 
 (async () => {
-    await Promise.all([
-        connect(),
-        mongoose.connect(`mongodb://${host}:${port}/${database}`)
-    ])
+    // await Promise.all([
+    //     connect(),
+    //     mongoose.connect(`mongodb://${host}:${port}/${database}`)
+    // ])
     work();
 })();
