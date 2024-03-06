@@ -2,6 +2,7 @@ import mysql from 'mysql2';
 import util from 'util';
 import config from 'config';
 import mongoose from 'mongoose';
+import getModel from './models/user-symbol/factory';
 
 // mysql init
 const connection = mysql.createConnection(config.get('mysql'));
@@ -17,6 +18,9 @@ const database = config.get<string>('mongo.database');
 // fetch data from google
 // save in mongo
 // notify clients
+async function scrape(symbol: string) {
+
+}
 
 // loop
 // get symbols from mysql
@@ -24,7 +28,10 @@ const database = config.get<string>('mongo.database');
 // set timeout for next cycle
 async function work() {
     try {
-
+        const symbols = await getModel().getUniqueSymbols();
+        //  ['BTC', 'DGO', 'ETH', 'SHB']
+        await Promise.allSettled(symbols.map(scrape));
+        // log
     } catch (err) {
         console.log(err);
     } finally {
@@ -38,4 +45,4 @@ async function work() {
         mongoose.connect(`mongodb://${host}:${port}/${database}`)
     ])
     work();
-})
+})();
