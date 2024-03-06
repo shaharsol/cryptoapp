@@ -3,6 +3,9 @@ import util from 'util';
 import config from 'config';
 import mongoose from 'mongoose';
 import getModel from './models/user-symbol/factory';
+import getSymbolValueModel from './models/symbol-value/factory';
+import axios from 'axios';
+import cheerio from 'cheerio';
 
 // mysql init
 const connection = mysql.createConnection(config.get('mysql'));
@@ -14,24 +17,31 @@ const host = config.get<string>('mongo.host');
 const port = config.get<number>('mongo.port');
 const database = config.get<string>('mongo.database');
 
-// function scrape
-// fetch data from google
-// save in mongo
-// notify clients
 async function scrape(symbol: string) {
+    console.log(`scraping ${symbol}`)
+    // fetch data from google
+    const response = await axios(`https://www.google.com/finance/quote/${symbol}-USD`);
+    const html = response.data;
+    const $ = cheerio.load(html);
+    const value = Number($('.YMlKec.fxKbKc').text().replace(',',''));
 
+
+    // save in mongo
+    const result = await getSymbolValueModel().add({
+        symbol,
+        value,
+        when: new Date() 
+    })
+
+    // notify clients
+    return;
 }
 
-// loop
-// get symbols from mysql
-// scrape all symbols
-// set timeout for next cycle
 async function work() {
     try {
         const symbols = await getModel().getUniqueSymbols();
-        //  ['BTC', 'DGO', 'ETH', 'SHB']
-        await Promise.allSettled(symbols.map(scrape));
-        // log
+        const results = await Promise.allSettled(symbols.map(scrape));
+        console.log(results);
     } catch (err) {
         console.log(err);
     } finally {

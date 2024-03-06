@@ -1,7 +1,7 @@
 import { ObjectId } from "mongoose";
 
 export interface DTO {
-    id: ObjectId
+    id?: ObjectId
     symbol: String;
     value: Number;
     when: Date;
