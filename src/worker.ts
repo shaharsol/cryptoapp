@@ -48,9 +48,7 @@ async function scrape(symbol: string) {
 
 async function work() {
     try {
-        // const symbols = await getModel().getUniqueSymbols();
-        const response = await axios(`http://${config.get('services.user.host')}:${config.get('services.user.port')}/api/symbols`);
-        const symbols = response.data;
+        const symbols = await getModel().getUniqueSymbols();
         const results = await Promise.allSettled(symbols.map(scrape));
         console.log(results);
     } catch (err) {
