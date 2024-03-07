@@ -29,7 +29,7 @@ server.use(auth.session());
 server.use(express.urlencoded())
 
 // routing
-server.use('/guests', guestsRouter);
+server.use('/', guestsRouter);
 server.use('/users', usersRouter);
 server.use('/github', githubRouter);
 

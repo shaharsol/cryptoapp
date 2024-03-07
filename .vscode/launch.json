@@ -3,7 +3,8 @@
     "configurations": [
       {
         "env": {
-            "NODE_ENV": "debug"
+            "NODE_ENV": "debug",
+            "GITHUB_CLIENT_SECRET": "7cd0a07e7784d2714a541093c263e49cf0bc70d0"
         },
         "name": "TS-Node",
         "type": "node",

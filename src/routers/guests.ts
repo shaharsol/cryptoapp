@@ -3,6 +3,6 @@ import { welcome } from '../controllers/guests/controller';
 
 const router = Router();
 
-router.use('/', welcome);
+router.get('/', welcome);
 
 export default router;
