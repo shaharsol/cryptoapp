@@ -28,6 +28,9 @@ services:
     ports:
       - 8186:3000
   worker:
+    depends_on:
+      mysql:
+        condition: service_healthy
     environment:
       NODE_ENV: staging
     build:
