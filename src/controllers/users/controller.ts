@@ -35,3 +35,9 @@ export async function addSymbol (req: Request, res: Response, next: NextFunction
     }
 }
 
+export function logout(req: Request, res: Response, next: NextFunction) {
+    req.logout(() => {
+        res.redirect('/');
+    });
+}
+
