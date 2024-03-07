@@ -10,8 +10,8 @@ passport.deserializeUser((user, done) => {
     done(null, user);
 });
 
-passport.use(new Strategy(config.get('github'), function (accessToken, refreshToken, profile, done) {
-    
+passport.use(new Strategy({...config.get('github')}, function (accessToken, refreshToken, profile, done) {
+
 }))
 
 export default passport;
