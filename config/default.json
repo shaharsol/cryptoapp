@@ -6,6 +6,9 @@
             "port": 8084
         }
     },
+    "api": {
+        "port": 8088
+    },
     "worker": {
         "interval": 30000,
         "io" : {
@@ -32,5 +35,11 @@
         "clientID": "07c52cc8f0391388de2a",
         "clientSecret": "",
         "callbackURL": "http://localhost:8082/github/callback"
+    },
+    "services": {
+        "user": {
+            "host": "localhost",
+            "port": "8082"
+        }
     }
 }
